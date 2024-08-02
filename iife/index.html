@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IIFE</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<script>
+	
+	var div = document.querySelector("#app");
+	var viewModel={};
+
+	(function() {
+	
+		function init() {
+			Object.defineProperty(viewModel, 'str', {
+				get: function () {
+					console.log('값 접근');
+				},
+				set: function (value) {
+					this._str = value;
+					console.log('Value changed to:', value);
+
+					render(value);
+				}
+			});
+		}
+
+		function render(value) {
+			div.innerHTML = value;
+		}
+
+		init();
+	
+	})();
+	
+	</script>
+	
+</body>
+</html>
